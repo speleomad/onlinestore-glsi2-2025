@@ -8,21 +8,31 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString
 public class ProductForm {
-    @NotBlank
+
+    //private Long id;
+
+    @NotBlank(message = "Code is required")
     private String code;
-    @NotBlank
+
+    @NotBlank(message = "Name is required")
     private String name;
-    @NotNull
-    @Min(0)
+
+    @NotNull(message = "Price is required")
+    @DecimalMin(value = "0.01", message = "Price must be greater than or equal to 0.01")
     private Double price;
-    @NotNull
-    @Min(0)
+
+    @NotNull(message = "Quantity is required")
+    @Min(value = 1, message = "Quantity must be greater than or equal to 1")
     private Integer quantity;
+
     private String image;
+
 }

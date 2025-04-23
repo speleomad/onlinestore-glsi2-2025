@@ -1,19 +1,20 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Create Product</title>
-    <link rel="stylesheet" type="text/css" th:href="@{../css/styles.css}">
+    <title>Update Product</title>
+    <link rel="stylesheet" type="text/css" th:href="@{../../css/styles.css}">
 </head>
 <body>
-    <div th:replace="~{fragments/header :: header}"></div> 
+    <div th:replace="fragments/header :: header"></div> 
     <a th:href="@{/products}">Back</a>
-    <h3>New Product</h3>
-    <form th:action="@{/products/create}" method="post" th:object="${productForm}">
+    <h3>Update Product</h3>
+    <form th:action="@{/products/{id}/edit(id=${id})}" method="post" th:object="${productForm}">
         <div>
             <label for="code">Code:</label>
             <input type="text" id="code" name="code" th:field="*{code}">
             <span th:if="${#fields.hasErrors('code')}" th:errors="*{code}" class="error"></span>
-           <span th:text="${duplicatedCode}" class="error"></span> 
+            <span th:text="${duplicatedCode}" class="error"></span> 
+        
         </div>
         <div>
             <label for="name">Name:</label>
@@ -36,7 +37,7 @@
             <span th:if="${#fields.hasErrors('image')}" th:errors="*{image}" class="error"></span>
         </div>
         <div>
-            <button type="submit">Create</button>
+            <button type="submit">Update</button>
         </div>
     </form>
 </body>
